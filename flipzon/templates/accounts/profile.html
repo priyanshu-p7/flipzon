@@ -1,12 +1,18 @@
 {% extends 'base.html' %} {% block title %}My Profile - Flipzon{% endblock %} {%
 block content %}
 <div class="container py-5">
-  <div class="row g-4 justify-content-center">
-    <div class="col-md-4">
+  <div class="row g-4">
+    <div class="col-md-3">
       <div class="card p-4 text-center">
         <i class="fas fa-user-circle fa-5x text-primary mb-3"></i>
         <h5 class="fw-bold">{{ user.get_full_name|default:user.username }}</h5>
-        <p class="text-muted">@{{ user.username }}</p>
+        <p class="text-muted mb-3">@{{ user.username }}</p>
+        <a
+          href="{% url 'orders:order_list' %}"
+          class="btn btn-outline-primary w-100 mb-2"
+        >
+          <i class="fas fa-box me-2"></i>My Orders
+        </a>
         <a
           href="{% url 'accounts:logout' %}"
           class="btn btn-outline-danger w-100"
@@ -15,7 +21,7 @@ block content %}
         </a>
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-9">
       <div class="card p-4">
         <h5 class="fw-bold mb-4">Edit Profile</h5>
         <form method="post">
@@ -56,6 +62,7 @@ block content %}
                 value="{{ user.username }}"
                 disabled
               />
+              <small class="text-muted">Username cannot be changed.</small>
             </div>
             <div class="col-12">
               <button type="submit" class="btn btn-primary">

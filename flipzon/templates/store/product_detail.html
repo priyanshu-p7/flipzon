@@ -1,7 +1,5 @@
-<!-- {% extends 'base.html' %} 
-{% block title %}
-{{ product.name }} - Flipzon{% endblock %}
-{% block content %}
+{% extends 'base.html' %} {% block title %}{{ product.name }} - Flipzon{%
+endblock %} {% block content %}
 <div class="container py-5">
   <nav aria-label="breadcrumb" class="mb-4">
     <ol class="breadcrumb">
@@ -15,16 +13,16 @@
   <div class="row g-5">
     <div class="col-md-5">
       <div class="card p-3">
-        {% if product.image %}
-        <img
+        {% if product.image %}<img
           src="{{ product.image.url }}"
           class="img-fluid rounded"
-          alt="{{ product.name }}"
+          alt="{{ product.name
+}}"
         />
         {% else %}
         <div
           class="bg-light rounded d-flex align-items-center justify-content-center"
-          style="height: 300px"
+          style="height: 320px"
         >
           <i class="fas fa-image fa-5x text-muted"></i>
         </div>
@@ -34,125 +32,34 @@
     <div class="col-md-7">
       <span class="badge bg-secondary mb-2">{{ product.category.name }}</span>
       <h2 class="fw-bold">{{ product.name }}</h2>
+      <div class="d-flex align-items-center gap-2 mb-3">
+        {% for i in "12345" %}<i
+          class="fas fa-star {% if forloop.counter <= avg_rating %}star{% else %}text-muted{% endif %}"
+        ></i
+        >{% endfor %}
+        <span class="text-muted">({{ reviews.count }} reviews)</span>
+      </div>
       <div class="mb-3">
         <span class="fs-2 fw-bold" style="color: #6c63ff"
           >■{{ product.final_price }}</span
         >
-        {% if product.discount_price %}
-        <span class="old-price ms-3 fs-5">■{{ product.price }}</span>
-        <span class="discount-badge ms-2"
+        {% if product.discount_price %}<span class="old-price ms-3 fs-5"
+          >■{{ product.price }}</span
+        ><span class="discount-badge ms-2"
           >{{ product.discount_percent }}% OFF</span
-        >
-        {% endif %}
+        >{% endif %}
       </div>
       <p class="text-muted mb-4">{{ product.description }}</p>
       {% if product.in_stock %}
-      <span class="badge bg-success mb-3 fs-6"
-        ><i class="fas fa-check me-1"></i>In Stock ({{ product.stock }})</span
-      >
-      <div class="alert alert-info">
-        <i class="fas fa-info-circle me-2"></i>Cart &amp; Checkout will be added
-        on <strong>Day 2</strong>!
-      </div>
-      {% else %}
-      <span class="badge bg-danger fs-6">Out of Stock</span>
-      {% endif %}
-    </div>
-  </div>
-  {% if related %}
-  <div class="mt-5">
-    <h4 class="fw-bold mb-4">Related Products</h4>
-    <div class="row g-4">
-      {% for p in related %}
-      <div class="col-6 col-md-3">
-        <div class="card h-100">
-          <a href="{% url 'store:product_detail' p.slug %}">
-            {% if p.image %}<img
-              src="{{ p.image.url }}"
-              class="product-img w-100"
-              alt="{{ p.name }}"
-            />
-            {% else %}
-            <div
-              class="product-img w-100 bg-light d-flex align-items-center justify-content-center"
-            >
-              <i class="fas fa-image fa-2x text-muted"></i>
-            </div>
-            {% endif %}
-          </a>
-          <div class="card-body">
-            <h6 class="fw-bold">
-              <a
-                href="{% url 'store:product_detail' p.slug %}"
-                class="text-dark text-decoration-none"
-                >{{ p.name }}</a
-              >
-            </h6>
-            <span class="price">■{{ p.final_price }}</span>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-  {% endif %}
-</div>
-{% endblock %} -->
-
-{% extends 'base.html' %} {% block title %}{{ product.name }} - Flipzon
-{% endblock %} {% block content %}
-<div class="container py-5">
-  <nav aria-label="breadcrumb" class="mb-4">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="{% url 'store:home' %}">Home</a></li>
-      <li class="breadcrumb-item">
-        <a href="{% url 'store:product_list' %}">Products</a>
-      </li>
-      <li class="breadcrumb-item active">{{ product.name }}</li>
-    </ol>
-  </nav>
-  <div class="row g-5">
-    <div class="col-md-5">
-      <div class="card p-3">
-        {% if product.image %}
-        <img
-          src="{{ product.image.url }}"
-          class="img-fluid rounded"
-          alt="{{ product.name }}"
-        />
-        {% else %}
-        <div
-          class="bg-light rounded d-flex align-items-center justify-content-center"
-          style="height: 300px"
+      <p>
+        <span class="badge bg-success"
+          ><i class="fas fa-check me-1"></i>In Stock ({{ product.stock }})</span
         >
-          <i class="fas fa-image fa-5x text-muted"></i>
-        </div>
-        {% endif %}
-      </div>
-    </div>
-    <div class="col-md-7">
-      <span class="badge bg-secondary mb-2">{{ product.category.name }}</span>
-      <h2 class="fw-bold">{{ product.name }}</h2>
-      <div class="mb-3">
-        <span class="fs-2 fw-bold" style="color: #6c63ff"
-          >■{{ product.final_price }}</span
-        >
-        {% if product.discount_price %}
-        <span class="old-price ms-3 fs-5">■{{ product.price }}</span>
-        <span class="discount-badge ms-2"
-          >{{ product.discount_percent }}% OFF</span
-        >
-        {% endif %}
-      </div>
-      <p class="text-muted mb-4">{{ product.description }}</p>
-      {% if product.in_stock %}
-      <span class="badge bg-success mb-3"
-        ><i class="fas fa-check me-1"></i>In Stock ({{ product.stock }})</span
-      >
+      </p>
       <form
         action="{% url 'cart:add' product.id %}"
         method="post"
-        class="d-flex align-items-center gap-3 mt-3"
+        class="d-flex align-items-center gap-3"
       >
         {% csrf_token %}
         <div class="input-group" style="width: 120px">
@@ -184,9 +91,9 @@
           <i class="fas fa-cart-plus me-2"></i>Add to Cart
         </button>
       </form>
-      {% else %}
-      <button class="btn btn-secondary btn-lg" disabled>Out of Stock</button>
-      {% endif %}
+      {% else %}<button class="btn btn-secondary btn-lg" disabled>
+        Out of Stock</button
+      >{% endif %}
       <div class="mt-4 d-flex gap-4 text-muted">
         <span
           ><i class="fas fa-truck me-1 text-primary"></i>Free delivery above
@@ -196,6 +103,66 @@
       </div>
     </div>
   </div>
+  <div class="row mt-5">
+    <div class="col-md-8">
+      <h4 class="fw-bold mb-4">Customer Reviews</h4>
+      {% if user.is_authenticated and not user_review %}
+      <div class="card p-4 mb-4">
+        <h6 class="fw-bold mb-3">Write a Review</h6>
+        <form action="{% url 'store:add_review' product.slug %}" method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Rating</label>
+            <select name="rating" class="form-select" required>
+              <option value="">Select rating</option>
+              <option value="5">■■■■■ Excellent</option>
+              <option value="4">■■■■ Good</option>
+              <option value="3">■■■ Average</option>
+              <option value="2">■■ Poor</option>
+              <option value="1">■ Terrible</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Comment</label>
+            <textarea
+              name="comment"
+              class="form-control"
+              rows="3"
+              placeholder="Share your experience..."
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit Review</button>
+        </form>
+      </div>
+      {% elif not user.is_authenticated %}
+      <div class="alert alert-info">
+        <a href="{% url 'accounts:login' %}">Login</a> to write a review.
+      </div>
+      {% endif %} {% for review in reviews %}
+      <div class="card p-4 mb-3">
+        <div class="d-flex justify-content-between">
+          <strong
+            >{{ review.user.get_full_name|default:review.user.username
+            }}</strong
+          >
+          <small class="text-muted"
+            >{{ review.created_at|date:"M d, Y" }}</small
+          >
+        </div>
+        <div class="my-1">
+          {% for i in "12345" %}<i
+            class="fas fa-star {% if forloop.counter <= review.rating %}star{% else %}text-muted{% endif %} fa-sm"
+          ></i
+          >{% endfor %}
+        </div>
+        <p class="mb-0 text-muted">{{ review.comment }}</p>
+      </div>
+      {% empty %}
+      <p class="text-muted">No reviews yet. Be the first!</p>
+      {% endfor %}
+    </div>
+  </div>
   {% if related %}
   <div class="mt-5">
     <h4 class="fw-bold mb-4">Related Products</h4>
@@ -203,20 +170,19 @@
       {% for p in related %}
       <div class="col-6 col-md-3">
         <div class="card h-100">
-          <a href="{% url 'store:product_detail' p.slug %}">
-            {% if p.image %}<img
+          <a href="{% url 'store:product_detail' p.slug %}"
+            >{% if p.image %}<img
               src="{{ p.image.url }}"
               class="product-img w-100"
               alt="{{ p.name }}"
-            />
-            {% else %}
+            />{% else %}
             <div
               class="product-img w-100 bg-light d-flex align-items-center justify-content-center"
             >
               <i class="fas fa-image fa-2x text-muted"></i>
             </div>
-            {% endif %}
-          </a>
+            {% endif %}</a
+          >
           <div class="card-body">
             <h6 class="fw-bold">
               <a
