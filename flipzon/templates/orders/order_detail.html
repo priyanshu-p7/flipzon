@@ -82,17 +82,17 @@ endblock %} {% block content %}
           <div class="ms-3 flex-grow-1">
             <h6 class="fw-bold mb-0">{{ item.product_name }}</h6>
             <small class="text-muted"
-              >■{{ item.price }} × {{ item.quantity }}</small
+              >₹{{ item.price }} × {{ item.quantity }}</small
             >
           </div>
-          <span class="fw-bold text-primary">■{{ item.total_price }}</span>
+          <span class="fw-bold text-primary">₹{{ item.total_price }}</span>
         </div>
         {% endfor %}
         <div
           class="d-flex justify-content-between fw-bold fs-5 mt-3 text-primary"
         >
           <span>Total Paid</span>
-          <span>■{{ order.total_amount }}</span>
+          <span>₹{{ order.total_amount }}</span>
         </div>
       </div>
     </div>

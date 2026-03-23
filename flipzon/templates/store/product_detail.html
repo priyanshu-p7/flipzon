@@ -41,10 +41,10 @@ endblock %} {% block content %}
       </div>
       <div class="mb-3">
         <span class="fs-2 fw-bold" style="color: #6c63ff"
-          >■{{ product.final_price }}</span
+          >₹{{ product.final_price }}</span
         >
         {% if product.discount_price %}<span class="old-price ms-3 fs-5"
-          >■{{ product.price }}</span
+          >₹{{ product.price }}</span
         ><span class="discount-badge ms-2"
           >{{ product.discount_percent }}% OFF</span
         >{% endif %}
@@ -97,7 +97,7 @@ endblock %} {% block content %}
       <div class="mt-4 d-flex gap-4 text-muted">
         <span
           ><i class="fas fa-truck me-1 text-primary"></i>Free delivery above
-          ■500</span
+          ₹500</span
         >
         <span><i class="fas fa-undo me-1 text-primary"></i>30-day returns</span>
       </div>
@@ -115,11 +115,11 @@ endblock %} {% block content %}
             <label class="form-label fw-semibold">Rating</label>
             <select name="rating" class="form-select" required>
               <option value="">Select rating</option>
-              <option value="5">■■■■■ Excellent</option>
-              <option value="4">■■■■ Good</option>
-              <option value="3">■■■ Average</option>
-              <option value="2">■■ Poor</option>
-              <option value="1">■ Terrible</option>
+              <option value="5">★★★★★ Excellent</option>
+              <option value="4">★★★★ Good</option>
+              <option value="3">★★★ Average</option>
+              <option value="2">★★ Poor</option>
+              <option value="1">★ Terrible</option>
             </select>
           </div>
           <div class="mb-3">
@@ -191,7 +191,7 @@ endblock %} {% block content %}
                 >{{ p.name }}</a
               >
             </h6>
-            <span class="price">■{{ p.final_price }}</span>
+            <span class="price">₹{{ p.final_price }}</span>
           </div>
         </div>
       </div>

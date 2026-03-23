@@ -37,7 +37,7 @@
                 type="number"
                 class="form-control form-control-sm"
                 name="min_price"
-                placeholder="Min ■"
+                placeholder="Min ₹"
                 value="{{ request.GET.min_price }}"
               />
             </div>
@@ -46,7 +46,7 @@
                 type="number"
                 class="form-control form-control-sm"
                 name="max_price"
-                placeholder="Max ■"
+                placeholder="Max ₹"
                 value="{{ request.GET.max_price }}"
               />
             </div>
@@ -96,41 +96,23 @@
           >
             <option
               value="-created_at"
-              {%
-              if
-              sort_by=""
-              ="-created_at"
-              %}selected{%
-              endif
-              %}
+              {% if sort_by == "-created_at" %}selected{% endif %}
             >
               Newest First
             </option>
             <option
               value="price_asc"
-              {%
-              if
-              sort_by=""
-              ="price_asc"
-              %}selected{%
-              endif
-              %}
+              {% if sort_by == "price_asc" %}selected{% endif %}
             >
               Price: Low to High
             </option>
             <option
               value="price_desc"
-              {%
-              if
-              sort_by=""
-              ="price_desc"
-              %}selected{%
-              endif
-              %}
+              {% if sort_by == "price_desc" %}selected{% endif %}
             >
               Price: High to Low
             </option>
-            <option value="name" {% if sort_by="" ="name" %}selected{% endif %}>
+            <option value="name" {% if sort_by == "name" %}selected{% endif %}>
               Name A-Z
             </option>
           </select>
@@ -165,9 +147,9 @@
                 >
               </h6>
               <div class="d-flex align-items-center gap-2 mb-2">
-                <span class="price">■{{ p.final_price }}</span>
+                <span class="price">₹{{ p.final_price }}</span>
                 {% if p.discount_price %}<span class="old-price"
-                  >■{{ p.price }}</span
+                  >₹{{ p.price }}</span
                 ><span class="discount-badge"
                   >{{ p.discount_percent }}% off</span
                 >{% endif %}

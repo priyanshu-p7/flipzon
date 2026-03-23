@@ -58,7 +58,7 @@
 {% endif %} {% if featured %}
 <section class="py-4 bg-white">
   <div class="container">
-    <h2 class="section-title">■ Featured Products</h2>
+    <h2 class="section-title">₹ Featured Products</h2>
     <div class="row g-4">
       {% for p in featured %}
       <div class="col-6 col-md-3">
@@ -87,9 +87,9 @@
               >
             </h6>
             <div class="d-flex align-items-center gap-2 mb-2">
-              <span class="price">■{{ p.final_price }}</span>
+              <span class="price">₹{{ p.final_price }}</span>
               {% if p.discount_price %}<span class="old-price"
-                >■{{ p.price }}</span
+                >₹{{ p.price }}</span
               ><span class="discount-badge">{{ p.discount_percent }}% off</span
               >{% endif %}
             </div>
@@ -121,7 +121,7 @@
 {% endif %} {% if latest %}
 <section class="py-5">
   <div class="container">
-    <h2 class="section-title">■ Latest Products</h2>
+    <h2 class="section-title">₹ Latest Products</h2>
     <div class="row g-4">
       {% for p in latest %}
       <div class="col-6 col-md-3">
@@ -150,9 +150,9 @@
               >
             </h6>
             <div class="d-flex align-items-center gap-2 mb-2">
-              <span class="price">■{{ p.final_price }}</span>
+              <span class="price">₹{{ p.final_price }}</span>
               {% if p.discount_price %}<span class="old-price"
-                >■{{ p.price }}</span
+                >₹{{ p.price }}</span
               ><span class="discount-badge">{{ p.discount_percent }}% off</span
               >{% endif %}
             </div>
